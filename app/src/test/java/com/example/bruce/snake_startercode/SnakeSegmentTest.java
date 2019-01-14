@@ -14,7 +14,7 @@ public class SnakeSegmentTest {
 
 
     @Test
-    public void getBody() {
+    public void getBodyParts() {
         SnakeSegment.BodyParts[] actualValue = {SnakeSegment.BodyParts.values()[0],SnakeSegment.BodyParts.values()[1], SnakeSegment.BodyParts.values()[2]};
         SnakeSegment.BodyParts[] expectedValue = new SnakeSegment.BodyParts[3];
         for(int i = 0; i < snakeSegments.length - 1;i++){
