@@ -102,7 +102,7 @@ public class GameActivity extends AppCompatActivity {
             snake.get(segment).getYLoc() * mGame.getSpriteDim(),
             (snake.get(segment).getXLoc() +1) * mGame.getSpriteDim(),
             (snake.get(segment).getYLoc() + 1) * mGame.getSpriteDim());
-            switch(snake.get(segment).getBodyPart()) {
+            switch(snake.get(segment).getBodyParts()) {
                 case HEAD:
                     currentBitmap = mHeadBitmap;
                     break;
