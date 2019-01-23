@@ -8,10 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static android.content.Context.MODE_PRIVATE;
+import static android.content.Context.POWER_SERVICE;
 
 public class SnakeGame {
 
-  private int mMillisDelay, mSpriteDim, mScore, mLevel, mCountdown, mBOARD_WIDTH, mBOARD_HEIGHT;
+  private int mMillisDelay, mSpriteDim, mScore, mLevel, mCountdown, mBOARD_WIDTH, mBOARD_HEIGHT, mXValue,mYValue,mDegrees;
   protected int[] mAppleCoord;
   protected ArrayList<SnakeSegment> mSnake = new ArrayList();
   private SnakeSegment mBodyParts;
@@ -30,6 +31,8 @@ public class SnakeGame {
     mSnake.add(new SnakeSegment(SnakeSegment.BodyParts.HEAD, beginningDirection, beginningX, beginningY));
     mSnake.add(new SnakeSegment(SnakeSegment.BodyParts.BODY, beginningDirection, beginningX - 1, beginningY));
     mSnake.add(new SnakeSegment(SnakeSegment.BodyParts.TAIL, beginningDirection, beginningX - 2, beginningY));
+    play();
+
   }
 
   protected int getMillisDelay(){
@@ -64,7 +67,6 @@ public class SnakeGame {
       return mSnake;
   }
 
-  
   protected void touched(float xTouched, float yTouched){
   
   }
@@ -73,7 +75,26 @@ public class SnakeGame {
   
   }
     
-  protected boolean play(){
-        return false;
-  }
+  protected boolean play() {
+    SnakeSegment mType;
+      for (int i = 0; i < mSnake.size(); i++) {
+        switch(mDegrees){
+          case 0:
+            mSnake.get(i).setXLoc(mXValue++);
+            break;
+
+          case 1:
+            mSnake.get(i).setYLoc(mYValue++);
+            break;
+
+          case 2:
+            mSnake.get(i).setXLoc(mXValue++);
+            mSnake.get(i).setYLoc(mYValue++);
+
+          case 3:
+            mSnake.get(i).setYLoc(mYValue++);
+        }
+      }
+      return false;
+    }
 }
