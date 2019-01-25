@@ -12,7 +12,7 @@ import static android.content.Context.POWER_SERVICE;
 
 public class SnakeGame {
 
-  private int mMillisDelay, mSpriteDim, mScore, mLevel, mCountdown, mBOARD_WIDTH, mBOARD_HEIGHT, mXValue,mYValue,mDegrees;
+  private int mMillisDelay, mSpriteDim, mScore, mLevel, mCountdown, mBOARD_WIDTH, mBOARD_HEIGHT, mXValue,mYValue,mDegrees, mXMax, mYMax, mRandomXCoordinate, mRandomYCoordinate;;
   protected int[] mAppleCoord;
   protected ArrayList<SnakeSegment> mSnake = new ArrayList();
   private SnakeSegment mBodyParts;
@@ -26,11 +26,14 @@ public class SnakeGame {
     mScore = 0;
     mLevel = 1;
     mCountdown = 12;
-    mMillisDelay = 400;
+    mMillisDelay = 750;//400
+    mXMax = 10;
+    mYMax = 10;
     mAppleCoord = new int[2];
-    mSnake.add(new SnakeSegment(SnakeSegment.BodyParts.HEAD, beginningDirection, beginningX, beginningY));
-    mSnake.add(new SnakeSegment(SnakeSegment.BodyParts.BODY, beginningDirection, beginningX - 1, beginningY));
     mSnake.add(new SnakeSegment(SnakeSegment.BodyParts.TAIL, beginningDirection, beginningX - 2, beginningY));
+    mSnake.add(new SnakeSegment(SnakeSegment.BodyParts.BODY, beginningDirection, beginningX - 1, beginningY));
+    mSnake.add(new SnakeSegment(SnakeSegment.BodyParts.HEAD, beginningDirection, beginningX, beginningY));
+    setAppleCoord();
     play();
 
   }
@@ -77,9 +80,12 @@ public class SnakeGame {
     
   protected boolean play() {
     SnakeSegment mType;
+    //
       for (int i = 0; i < mSnake.size(); i++) {
         switch(mDegrees){
           case 0:
+            //This is the start of experimenting.
+            //This is the end
             mSnake.get(i).setXLoc(mXValue++);
             break;
 
@@ -95,6 +101,19 @@ public class SnakeGame {
             mSnake.get(i).setYLoc(mYValue++);
         }
       }
+    if(mSnake.get(1).getXLoc() >= mXMax){
+      return true;
+    }
       return false;
+    }
+
+    //This has something to do with the GameActivity.java the //Draw Apple section.
+    private void setAppleCoord(){
+      mRandomXCoordinate = (int) (11 * Math.random() + 1);
+      mRandomYCoordinate = (int) (11 * Math.random() + 1);
+      if(mRandomXCoordinate >= mXMax || mRandomYCoordinate >= mYMax){
+        mRandomXCoordinate -= 1;
+        mRandomYCoordinate -= 1;
+      }
     }
 }
