@@ -17,19 +17,19 @@ public class SnakeGame {
   protected ArrayList<SnakeSegment> mSnake = new ArrayList();
   private SnakeSegment mBodyParts;
   private boolean mGameOver;
-
+  protected ArrayList<PivotPoint> mPivotPoints;
 
   public SnakeGame(int beginningDirection, int beginningSpriteDim, int beginningX, int beginningY, int width, int height){
     mSpriteDim = beginningSpriteDim;
-
     mBOARD_WIDTH = width;
     mBOARD_HEIGHT = height;
     mScore = 0;
     mLevel = 1;
     mCountdown = 12;
-    mMillisDelay = 750;//400
+    mMillisDelay = 750;
     mXMax = width / beginningSpriteDim;
     mYMax = height / beginningSpriteDim;
+    mPivotPoints = new ArrayList();
     mAppleCoord = new int[2];
     mSnake.add(new SnakeSegment(SnakeSegment.BodyParts.HEAD, beginningDirection, beginningX, beginningY));
     mSnake.add(new SnakeSegment(SnakeSegment.BodyParts.BODY, beginningDirection, beginningX - 1, beginningY));
@@ -71,7 +71,12 @@ public class SnakeGame {
   }
 
   protected void touched(float xTouched, float yTouched){
-  
+    int x = mSnake.get(0).getXLoc() * mSpriteDim;
+    int y = mSnake.get(0).getYLoc() * mSpriteDim;
+    int d = mSnake.get(0).getDegrees();
+    if(x == xTouched && y == yTouched){
+      mPivotPoints.add(new PivotPoint(x, y, 90));
+    }
   }
     
   protected void eatApple(){
@@ -86,11 +91,16 @@ public class SnakeGame {
         int x = mSnake.get(i).getXLoc();
         int y = mSnake.get(i).getYLoc();
 
+        for(int s = 0; s < mPivotPoints.size();s++){
+          if(mSnake.get(0).getXLoc() == mPivotPoints.get(s).mXCoordinate){
+            if(mSnake.get(0).getYLoc() == mPivotPoints.get(s).mYCoordinate){
+
+            }
+          }
+        }
 
         switch(degrees){
           case 0:
-            //This is the start of experimenting.
-            //This is the end
             mSnake.get(i).setXLoc(++x);
             break;
 
@@ -100,9 +110,11 @@ public class SnakeGame {
 
           case 180:
             mSnake.get(i).setXLoc(--x);
+            break;
 
           case 270:
             mSnake.get(i).setYLoc(--y);
+            break;
         }
       }
     if(mSnake.get(0).getXLoc() >= mXMax){
@@ -111,10 +123,8 @@ public class SnakeGame {
       return false;
     }
 
-    //This has something to do with the GameActivity.java the //Draw Apple section.
     private void setAppleCoord(){
       mAppleCoord[0] = (int) ((mXMax - 1) * Math.random() + 1) * mSpriteDim;
       mAppleCoord[1] = (int) ((mYMax - 1) * Math.random() + 1) * mSpriteDim;
-
     }
 }
