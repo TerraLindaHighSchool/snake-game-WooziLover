@@ -94,6 +94,24 @@ public class SnakeGame {
   }
     
   protected boolean play() {
+    SnakeSegment mType;
+    int x, y;
+
+    for(int i = 0; i < mSnake.size(); i++){
+      int degrees = mSnake.get(i).getDegrees();
+      mType = mSnake.get(i);
+      x = mType.getXLoc();
+      y = mType.getYLoc();
+
+    for(int s = 0; s < mPivotPoints.size(); s++) {
+      PivotPoint pivotPoint = mPivotPoints.get(s);
+      if (x == pivotPoint.getXCoordinate() && y == pivotPoint.getYCoordinate()) {
+        mType.setDegrees(pivotPoint.getDegrees());
+        if (mType.getBodyParts() == SnakeSegment.BodyParts.TAIL)
+          mPivotPoints.remove(s);
+      }
+    }
+      /*
       for (int i = 0; i < mSnake.size(); i++) {
         SnakeSegment.BodyParts bp = mSnake.get(i).getBodyParts();
         int degrees = mSnake.get(i).getDegrees();
@@ -110,7 +128,7 @@ public class SnakeGame {
           mPivotPoints.remove(0);
           }
         }
-
+      */
         switch(degrees){
           case 0:
             mSnake.get(i).setXLoc(++x);
@@ -129,7 +147,8 @@ public class SnakeGame {
             break;
         }
       }
-    if(mSnake.get(0).getXLoc() >= mXMax || mSnake.get(0).getYLoc() >= mYMax){
+
+    if(mSnake.get(0).getXLoc() >= mXMax || mSnake.get(0).getYLoc() >= mYMax || mSnake.get(0).getXLoc() <= 0 || mSnake.get(0).getYLoc() <= 0){
       return true;
     }
       return false;
