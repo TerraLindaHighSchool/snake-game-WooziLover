@@ -5,7 +5,7 @@ public class SnakeSegment {
     private BodyParts mBodyParts;
     int mDegrees, mXLoc, mYLoc;
 
-    public SnakeSegment (BodyParts bodyParts, int degrees, int xLoc, int yLoc){
+    public SnakeSegment ( BodyParts bodyParts, int degrees, int xLoc, int yLoc){
         mBodyParts = bodyParts;
         mDegrees = degrees;
         mXLoc = xLoc;
