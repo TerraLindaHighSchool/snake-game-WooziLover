@@ -71,42 +71,22 @@ public class SnakeGame {
   }
 
   protected void touched(float xTouched, float yTouched) {
-    int x = mSnake.get(0).getXLoc() * mSpriteDim;
-    int y = mSnake.get(0).getYLoc() * mSpriteDim;
+    int x = mSnake.get(0).getXLoc();
+    int y = mSnake.get(0).getYLoc();
     int degrees = mSnake.get(0).getDegrees();
-   /* if(y < yTouched){
-      degrees = 90;
-    }else{
-      degrees = 270;
-    }
-    mPivotPoints.add(new PivotPoint(x, y, degrees));*/
-
-    if(degrees == 0){
-      if(yTouched < y){
-        mPivotPoints.add(new PivotPoint(x, y, degrees))
-      }
-    }
- /*   if(yTouched < y)
-      if(xTouched < x){
-      mPivotPoints.add(new PivotPoint(x, y, 270));
-      }else{
-    if(yTouched > y)
-        if(xTouched > x){
+    if (degrees == 180 || degrees == 0) {
+      if (yTouched > y * mSpriteDim)
         mPivotPoints.add(new PivotPoint(x, y, 90));
-        }
-      }
-*/
-   /* if(yTouched > y) {
-      mPivotPoints.add(new PivotPoint(x / mSpriteDim, y / mSpriteDim, 270));
-    }else{
-      mPivotPoints.add(new PivotPoint(x / mSpriteDim, y / mSpriteDim,180));
+      else
+        mPivotPoints.add(new PivotPoint(x, y, 270));
     }
 
-    if(xTouched > x) {
-      mPivotPoints.add(new PivotPoint(x/ mSpriteDim, y / mSpriteDim, 0));
-    }else{
-      mPivotPoints.add(new PivotPoint(x / mSpriteDim, y / mSpriteDim, 90));
-    }*/
+    if (degrees == 90 || degrees == 270){
+      if (xTouched > x * mSpriteDim)
+        mPivotPoints.add(new PivotPoint(x, y, 0));
+      else
+        mPivotPoints.add(new PivotPoint(x, y, 180));
+    }
   }
 
   protected void eatApple(){
