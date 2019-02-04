@@ -90,7 +90,10 @@ public class SnakeGame {
   }
 
   protected void eatApple(){
-  
+    if(mSnake.get(0).getXLoc() == mAppleCoord[0] / mSpriteDim && mSnake.get(0).getYLoc() == mAppleCoord[0] / mSpriteDim){
+      setAppleCoord();
+      growSnake();
+    }
   }
 
   private void growSnake(){
@@ -113,6 +116,7 @@ public class SnakeGame {
   }
 
   protected boolean play() {
+    eatApple();
     SnakeSegment mType;
     int x, y;
 
@@ -176,5 +180,9 @@ public class SnakeGame {
     private void setAppleCoord(){
       mAppleCoord[0] = (int) ((mXMax - 1) * Math.random() + 1) * mSpriteDim;
       mAppleCoord[1] = (int) ((mYMax - 1) * Math.random() + 1) * mSpriteDim;
+      if(mAppleCoord[0] == mSnake.get(0).getXLoc() && mAppleCoord[1] == mSnake.get(0).getYLoc()){
+        mAppleCoord[0] += 1;
+        mAppleCoord[1] += 1;
+      }
     }
 }
