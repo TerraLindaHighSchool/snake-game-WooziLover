@@ -26,7 +26,7 @@ public class SnakeGame {
     mScore = 0;
     mLevel = 1;
     mCountdown = 12;
-    mMillisDelay = 750;
+    mMillisDelay = 200;//750
     mXMax = width / beginningSpriteDim;
     mYMax = height / beginningSpriteDim;
     mPivotPoints = new ArrayList();
@@ -90,7 +90,7 @@ public class SnakeGame {
   }
 
   protected void eatApple(){
-    if(mSnake.get(0).getXLoc() == mAppleCoord[0] / mSpriteDim && mSnake.get(0).getYLoc() == mAppleCoord[0] / mSpriteDim){
+    if(mSnake.get(0).getXLoc()* mSpriteDim == mAppleCoord[0] && mSnake.get(0).getYLoc() * mSpriteDim == mAppleCoord[1]){
       setAppleCoord();
       growSnake();
     }
@@ -98,21 +98,20 @@ public class SnakeGame {
 
   private void growSnake(){
     SnakeSegment newBodyPart = mSnake.get(mSnake.size() - 1);
-    mSnake.add(mSnake.size() - 2, new SnakeSegment(SnakeSegment.BodyParts.BODY, newBodyPart.getDegrees(), newBodyPart.getXLoc(), newBodyPart.getYLoc()));
+    mSnake.add(mSnake.size() - 2, new SnakeSegment(SnakeSegment.BodyParts.BODY, newBodyPart.getDegrees(), newBodyPart.getXLoc(), newBodyPart.getYLoc()));//mSnake.size() -2
     switch(newBodyPart.getDegrees()){
       case 0:
-        newBodyPart.setXLoc(newBodyPart.getXLoc() + 1);
+        newBodyPart.setXLoc(newBodyPart.getXLoc() + 1);//+1
         break;
       case 180:
-        newBodyPart.setXLoc(newBodyPart.getXLoc() - 1);
+        newBodyPart.setXLoc(newBodyPart.getXLoc() - 1);//-1
         break;
       case 90:
-        newBodyPart.setYLoc(newBodyPart.getYLoc() - 1);
+        newBodyPart.setYLoc(newBodyPart.getYLoc() - 1);//-1
         break;
       case 270:
-        newBodyPart.setYLoc(newBodyPart.getYLoc() + 1);
+        newBodyPart.setYLoc(newBodyPart.getYLoc() - 1);//+1
     }
-
   }
 
   protected boolean play() {
@@ -171,7 +170,7 @@ public class SnakeGame {
         }
       }
 
-    if(mSnake.get(0).getXLoc() >= mXMax || mSnake.get(0).getYLoc() >= mYMax || mSnake.get(0).getXLoc() <= 0 || mSnake.get(0).getYLoc() <= 0){
+    if(mSnake.get(0).getXLoc() >= mXMax + 1 || mSnake.get(0).getYLoc() >= mYMax + 1 || mSnake.get(0).getXLoc() <= 0 || mSnake.get(0).getYLoc() <= 0){
       return true;
     }
       return false;
