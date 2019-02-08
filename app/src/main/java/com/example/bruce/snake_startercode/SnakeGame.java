@@ -98,19 +98,19 @@ public class SnakeGame {
 
   private void growSnake(){
     SnakeSegment newBodyPart = mSnake.get(mSnake.size() - 1);
-    mSnake.add(mSnake.size() - 2, new SnakeSegment(SnakeSegment.BodyParts.BODY, newBodyPart.getDegrees(), newBodyPart.getXLoc(), newBodyPart.getYLoc()));//mSnake.size() -2
+    mSnake.add(mSnake.size() - 1, new SnakeSegment(SnakeSegment.BodyParts.BODY, newBodyPart.getDegrees(), newBodyPart.getXLoc(), newBodyPart.getYLoc()));
     switch(newBodyPart.getDegrees()){
       case 0:
-        newBodyPart.setXLoc(newBodyPart.getXLoc() + 1);//+1
+        newBodyPart.setXLoc(newBodyPart.getXLoc() - 1);
         break;
       case 180:
-        newBodyPart.setXLoc(newBodyPart.getXLoc() - 1);//-1
+        newBodyPart.setXLoc(newBodyPart.getXLoc() + 1);
         break;
       case 90:
-        newBodyPart.setYLoc(newBodyPart.getYLoc() - 1);//-1
+        newBodyPart.setYLoc(newBodyPart.getYLoc() - 1);
         break;
       case 270:
-        newBodyPart.setYLoc(newBodyPart.getYLoc() - 1);//+1
+        newBodyPart.setYLoc(newBodyPart.getYLoc() + 1);
     }
   }
 
@@ -170,7 +170,7 @@ public class SnakeGame {
         }
       }
 
-    if(mSnake.get(0).getXLoc() >= mXMax + 1 || mSnake.get(0).getYLoc() >= mYMax + 1 || mSnake.get(0).getXLoc() <= 0 || mSnake.get(0).getYLoc() <= 0){
+    if(mSnake.get(0).getXLoc() >= mXMax || mSnake.get(0).getYLoc() >= mYMax || mSnake.get(0).getXLoc() <= 0 || mSnake.get(0).getYLoc() <= 0){
       return true;
     }
       return false;
