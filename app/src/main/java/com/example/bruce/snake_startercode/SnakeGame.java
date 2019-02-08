@@ -133,24 +133,7 @@ public class SnakeGame {
           mPivotPoints.remove(s);
       }
     }
-      /*
-      for (int i = 0; i < mSnake.size(); i++) {
-        SnakeSegment.BodyParts bp = mSnake.get(i).getBodyParts();
-        int degrees = mSnake.get(i).getDegrees();
-        int x = mSnake.get(i).getXLoc();
-        int y = mSnake.get(i).getYLoc();
 
-        for(int s = 0; s < mPivotPoints.size();s++){
-          if(mSnake.get(0).getXLoc() == mPivotPoints.get(s).mXCoordinate){
-            if(mSnake.get(0).getYLoc() == mPivotPoints.get(s).mYCoordinate){
-              mSnake.get(degrees).setDegrees(mPivotPoints.get(s).mDegrees);
-            }
-          }
-          if(bp == SnakeSegment.BodyParts.TAIL){
-          mPivotPoints.remove(0);
-          }
-        }
-      */
         switch(degrees){
           case 0:
             mSnake.get(i).setXLoc(++x);
