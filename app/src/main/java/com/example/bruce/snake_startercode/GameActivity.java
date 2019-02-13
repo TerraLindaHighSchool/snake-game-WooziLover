@@ -29,7 +29,7 @@ public class GameActivity extends AppCompatActivity {
     private TextView mTextScore, mTextHighScore, mTextCountdown;
     private int mBOARD_WIDTH, mBOARD_HEIGHT;
     private SnakeGame mGame;
-    private Bitmap mHeadBitmap, mBodyBitmap, mTailBitmap, mAppleBitmap;
+    private Bitmap mHeadBitmap, mBodyBitmap, mTailBitmap, mAppleBitmap, mGreenAppleBitmap;
     private Handler mHandler;
 
     @Override
@@ -53,6 +53,7 @@ public class GameActivity extends AppCompatActivity {
         mBodyBitmap = BitmapFactory.decodeResource(mImageView.getResources(), R.drawable.body);
         mTailBitmap = BitmapFactory.decodeResource(mImageView.getResources(), R.drawable.tail);
         mAppleBitmap = BitmapFactory.decodeResource(mImageView.getResources(), R.drawable.apple);
+        mGreenAppleBitmap = BitmapFactory.decodeResource(mImageView.getResources(), R.drawable.greenapple2);
 
         //Listen for screen touches
 
@@ -123,6 +124,12 @@ public class GameActivity extends AppCompatActivity {
         rectangle = new Rect(appleLeft, appleTop, appleLeft + mGame.getSpriteDim(),
                             appleTop + mGame.getSpriteDim());
         window.drawBitmap(mAppleBitmap, null, rectangle, null);
+        mImageView.setImageBitmap(ourBitmap);
+
+        //Draw Green Apple
+        rectangle = new Rect(appleLeft, appleTop, appleLeft + mGame.getSpriteDim(),
+                appleTop + mGame.getSpriteDim());
+        window.drawBitmap(mGreenAppleBitmap, null, rectangle, null);
         mImageView.setImageBitmap(ourBitmap);
         }
 
