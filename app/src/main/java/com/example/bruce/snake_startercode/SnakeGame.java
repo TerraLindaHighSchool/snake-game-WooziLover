@@ -31,7 +31,7 @@ public class SnakeGame {
     mYMax = height / beginningSpriteDim;
     mPivotPoints = new ArrayList();
     mAppleCoord = new int[2];
-    //mGreenAppleCoord = new int[2];
+    mGreenAppleCoord = new int[2];
     mSnake.add(new SnakeSegment(SnakeSegment.BodyParts.HEAD, beginningDirection, beginningX, beginningY));
     mSnake.add(new SnakeSegment(SnakeSegment.BodyParts.BODY, beginningDirection, beginningX - 1, beginningY));
     mSnake.add(new SnakeSegment(SnakeSegment.BodyParts.TAIL, beginningDirection, beginningX - 2, beginningY));
@@ -107,12 +107,12 @@ public class SnakeGame {
       growSnake();
     }
 
-/*    if(mLevel == 2){
+    if(mLevel == 2){
     if(mSnake.get(0).getXLoc() * mSpriteDim == mGreenAppleCoord[0] && mSnake.get(0).getYLoc() * mSpriteDim == mGreenAppleCoord[1]) {
-      updateScore();
+      mScore--;
       setAppleCoord();
     }
-    }*/
+    }
   }
 
   private void growSnake() {
@@ -137,7 +137,6 @@ public class SnakeGame {
     eatApple();
     speedChanger();
     if(mLevel == 2){
-      mGreenAppleCoord = new int[2];
       setGreenAppleCoord();
     }
     SnakeSegment mType;
@@ -198,7 +197,7 @@ public class SnakeGame {
       mGreenAppleCoord[0] += 1;
       mGreenAppleCoord[1] += 1;
     }
-    if(mGreenAppleCoord[0] == mAppleCoord[0] && mGreenAppleCoord[1] == mGreenAppleCoord[1]){
+    if(mGreenAppleCoord[0] == mAppleCoord[0] && mGreenAppleCoord[1] == mAppleCoord[1]){
       mGreenAppleCoord[0] -= 2;
       mGreenAppleCoord[1] -= 2;
     }
@@ -230,8 +229,6 @@ public class SnakeGame {
     int mSpeed = getMillisDelay();
     int mMoreLevels = getLevel();
     if(mMoreLevels == 2)
-      mSpeed = 600;
-    if(mMoreLevels == 3)
       mSpeed = 300;
   }
 }

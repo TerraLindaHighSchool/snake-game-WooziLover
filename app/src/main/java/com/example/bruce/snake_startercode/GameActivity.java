@@ -92,6 +92,9 @@ public class GameActivity extends AppCompatActivity {
         int[] appleCoord = mGame.getAppleCoord();
         int appleLeft = appleCoord[0];
         int appleTop = appleCoord[1];
+        int[] greenAppleCoord = mGame.getGreenAppleCoord();
+        int greenAppleLeft = greenAppleCoord[0];
+        int greenAppleTop = greenAppleCoord[1];
         Bitmap ourBitmap = Bitmap.createBitmap(mBOARD_WIDTH, mBOARD_HEIGHT, Bitmap.Config.ARGB_8888);
         Canvas window = new Canvas(ourBitmap);
         Rect rectangle = null;
@@ -129,10 +132,12 @@ public class GameActivity extends AppCompatActivity {
         mImageView.setImageBitmap(ourBitmap);
 
         //Draw Green Apple
-        rectangle = new Rect(appleLeft, appleTop, appleLeft + mGame.getSpriteDim(),
-                appleTop + mGame.getSpriteDim());
-        window.drawBitmap(mGreenAppleBitmap, null, rectangle, null);
-        mImageView.setImageBitmap(ourBitmap);
+        if(mGame.getLevel() == 2) {
+            rectangle = new Rect(greenAppleLeft, greenAppleTop, greenAppleLeft + mGame.getSpriteDim(),
+                    greenAppleTop + mGame.getSpriteDim());
+            window.drawBitmap(mGreenAppleBitmap, null, rectangle, null);
+            mImageView.setImageBitmap(ourBitmap);
+        }
     }
 
     public Bitmap rotateBitmap(Bitmap original, float degrees) {
