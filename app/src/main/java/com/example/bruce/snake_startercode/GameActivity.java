@@ -29,7 +29,7 @@ public class GameActivity extends AppCompatActivity {
     private TextView mTextScore, mTextHighScore, mTextCountdown;
     private int mBOARD_WIDTH, mBOARD_HEIGHT;
     private SnakeGame mGame;
-    private Bitmap mHeadBitmap, mBodyBitmap, mTailBitmap, mAppleBitmap, mGreenAppleBitmap;
+    private Bitmap mHeadBitmap, mBodyBitmap, mTailBitmap, mAppleBitmap, mPinkHeadBitmap, mGreenAppleBitmap;
     private Handler mHandler;
 
     @Override
@@ -53,7 +53,8 @@ public class GameActivity extends AppCompatActivity {
         mBodyBitmap = BitmapFactory.decodeResource(mImageView.getResources(), R.drawable.body);
         mTailBitmap = BitmapFactory.decodeResource(mImageView.getResources(), R.drawable.tail);
         mAppleBitmap = BitmapFactory.decodeResource(mImageView.getResources(), R.drawable.apple);
-        mGreenAppleBitmap = BitmapFactory.decodeResource(mImageView.getResources(), R.drawable.greenapple2);
+        //mPinkHeadBitmap = BitmapFactory.decodeResource(mImageView.getResources(), R.drawable.pinkhead2);
+      //  mGreenAppleBitmap = BitmapFactory.decodeResource(mImageView.getResources(), R.drawable.greenapple2);
 
         //Listen for screen touches
 
@@ -98,22 +99,23 @@ public class GameActivity extends AppCompatActivity {
         window.drawColor(Color.BLACK); // Background Color
 
         //Draw snake
-        for(int segment = 0; segment < snake.size(); segment++) {
-            rectangle = new Rect( snake.get(segment).getXLoc() * mGame.getSpriteDim(),
-            snake.get(segment).getYLoc() * mGame.getSpriteDim(),
-            (snake.get(segment).getXLoc() +1) * mGame.getSpriteDim(),
-            (snake.get(segment).getYLoc() + 1) * mGame.getSpriteDim());
-            switch(snake.get(segment).getBodyParts()) {
+        for (int segment = 0; segment < snake.size(); segment++) {
+            rectangle = new Rect(snake.get(segment).getXLoc() * mGame.getSpriteDim(),
+                    snake.get(segment).getYLoc() * mGame.getSpriteDim(),
+                    (snake.get(segment).getXLoc() + 1) * mGame.getSpriteDim(),
+                    (snake.get(segment).getYLoc() + 1) * mGame.getSpriteDim());
+            switch (snake.get(segment).getBodyParts()) {
                 case HEAD:
                     currentBitmap = mHeadBitmap;
                     break;
                 case BODY:
                     currentBitmap = mBodyBitmap;
                     break;
-                case TAIL: currentBitmap = mTailBitmap;
-                break;
+                case TAIL:
+                    currentBitmap = mTailBitmap;
+                    break;
             }
-            if(snake.get(segment).getDegrees() == 0)
+            if (snake.get(segment).getDegrees() == 0)
                 window.drawBitmap(currentBitmap, null, rectangle, null);
             else
                 window.drawBitmap(rotateBitmap(currentBitmap, snake.get(segment).getDegrees()),
@@ -122,16 +124,16 @@ public class GameActivity extends AppCompatActivity {
 
         //Draw Apple
         rectangle = new Rect(appleLeft, appleTop, appleLeft + mGame.getSpriteDim(),
-                            appleTop + mGame.getSpriteDim());
+                appleTop + mGame.getSpriteDim());
         window.drawBitmap(mAppleBitmap, null, rectangle, null);
         mImageView.setImageBitmap(ourBitmap);
 
         //Draw Green Apple
-        rectangle = new Rect(appleLeft, appleTop, appleLeft + mGame.getSpriteDim(),
+        /*rectangle = new Rect(appleLeft, appleTop, appleLeft + mGame.getSpriteDim(),
                 appleTop + mGame.getSpriteDim());
         window.drawBitmap(mGreenAppleBitmap, null, rectangle, null);
-        mImageView.setImageBitmap(ourBitmap);
-        }
+        mImageView.setImageBitmap(ourBitmap);*/
+    }
 
     public Bitmap rotateBitmap(Bitmap original, float degrees) {
         int width = original.getWidth();

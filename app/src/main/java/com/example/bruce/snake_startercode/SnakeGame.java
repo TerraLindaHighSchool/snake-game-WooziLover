@@ -26,20 +26,25 @@ public class SnakeGame {
     mScore = 0;
     mLevel = 1;
     mCountdown = 12;
-    mMillisDelay = 300;//750
+    mMillisDelay = 600;
     mXMax = width / beginningSpriteDim;
     mYMax = height / beginningSpriteDim;
     mPivotPoints = new ArrayList();
     mAppleCoord = new int[2];
-    mGreenAppleCoord = new int[2];
+    //mGreenAppleCoord = new int[2];
     mSnake.add(new SnakeSegment(SnakeSegment.BodyParts.HEAD, beginningDirection, beginningX, beginningY));
     mSnake.add(new SnakeSegment(SnakeSegment.BodyParts.BODY, beginningDirection, beginningX - 1, beginningY));
     mSnake.add(new SnakeSegment(SnakeSegment.BodyParts.TAIL, beginningDirection, beginningX - 2, beginningY));
     setAppleCoord();
-    //comment
-      setGreenAppleCoord();
 
+    //speedChanger();
+    /*if(mLevel == 2){
+      mMillisDelay = 300;
+      mGreenAppleCoord = new int[2];
+      setGreenAppleCoord();
+    }*/
   }
+
   protected int getMillisDelay() {
     return mMillisDelay;
   }
@@ -98,10 +103,12 @@ public class SnakeGame {
       growSnake();
     }
 
+/*    if(mLevel == 2){
     if(mSnake.get(0).getXLoc() * mSpriteDim == mGreenAppleCoord[0] && mSnake.get(0).getYLoc() * mSpriteDim == mGreenAppleCoord[1]) {
       updateScore();
       setAppleCoord();
     }
+    }*/
   }
 
   private void growSnake() {
@@ -124,6 +131,7 @@ public class SnakeGame {
 
   protected boolean play() {
     eatApple();
+    speedChanger();
     SnakeSegment mType;
     int x, y;
 
@@ -175,7 +183,7 @@ public class SnakeGame {
   }
 
 
-  private void setGreenAppleCoord(){
+  /*private void setGreenAppleCoord(){
     mGreenAppleCoord[0] = (int) ((mXMax - 1) * Math.random() + 1) * mSpriteDim;
     mGreenAppleCoord[1] = (int) ((mYMax - 1) * Math.random() + 1) * mSpriteDim;
     if (mGreenAppleCoord[0] == mSnake.get(0).getXLoc() && mGreenAppleCoord[1] == mSnake.get(0).getYLoc()) {
@@ -187,6 +195,7 @@ public class SnakeGame {
       mGreenAppleCoord[1] += 2;
     }
   }
+*/
   private void setAppleCoord() {
     mAppleCoord[0] = (int) ((mXMax - 1) * Math.random() + 1) * mSpriteDim;
     mAppleCoord[1] = (int) ((mYMax - 1) * Math.random() + 1) * mSpriteDim;
@@ -207,6 +216,15 @@ public class SnakeGame {
     if (mLevel > 2) {
       mGameOver = true;
     }
+  }
+
+  protected void speedChanger(){
+    int mSpeed = getMillisDelay();
+    int mMoreLevels = getLevel();
+    if(mMoreLevels == 2)
+      mSpeed = 600;
+    if(mMoreLevels == 3)
+      mSpeed = 300;
   }
 }
 
