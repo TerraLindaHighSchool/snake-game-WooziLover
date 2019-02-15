@@ -54,7 +54,7 @@ public class GameActivity extends AppCompatActivity {
         mTailBitmap = BitmapFactory.decodeResource(mImageView.getResources(), R.drawable.tail);
         mAppleBitmap = BitmapFactory.decodeResource(mImageView.getResources(), R.drawable.apple);
         //mPinkHeadBitmap = BitmapFactory.decodeResource(mImageView.getResources(), R.drawable.pinkhead2);
-      //  mGreenAppleBitmap = BitmapFactory.decodeResource(mImageView.getResources(), R.drawable.greenapple2);
+        mGreenAppleBitmap = BitmapFactory.decodeResource(mImageView.getResources(), R.drawable.greenapple2);
 
         //Listen for screen touches
 
@@ -129,7 +129,7 @@ public class GameActivity extends AppCompatActivity {
         mImageView.setImageBitmap(ourBitmap);
 
         //Draw Green Apple
-        /*rectangle = new Rect(appleLeft, appleTop, appleLeft + mGame.getSpriteDim(),
+       /* rectangle = new Rect(appleLeft, appleTop, appleLeft + mGame.getSpriteDim(),
                 appleTop + mGame.getSpriteDim());
         window.drawBitmap(mGreenAppleBitmap, null, rectangle, null);
         mImageView.setImageBitmap(ourBitmap);*/

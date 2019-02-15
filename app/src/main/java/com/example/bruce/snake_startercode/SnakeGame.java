@@ -132,6 +132,10 @@ public class SnakeGame {
   protected boolean play() {
     eatApple();
     speedChanger();
+    if(mLevel == 2){
+      mGreenAppleCoord = new int[2];
+      setGreenAppleCoord();
+    }
     SnakeSegment mType;
     int x, y;
 
@@ -183,7 +187,7 @@ public class SnakeGame {
   }
 
 
-  /*private void setGreenAppleCoord(){
+  private void setGreenAppleCoord(){
     mGreenAppleCoord[0] = (int) ((mXMax - 1) * Math.random() + 1) * mSpriteDim;
     mGreenAppleCoord[1] = (int) ((mYMax - 1) * Math.random() + 1) * mSpriteDim;
     if (mGreenAppleCoord[0] == mSnake.get(0).getXLoc() && mGreenAppleCoord[1] == mSnake.get(0).getYLoc()) {
@@ -191,11 +195,11 @@ public class SnakeGame {
       mGreenAppleCoord[1] += 1;
     }
     if(mGreenAppleCoord[0] == mAppleCoord[0] && mGreenAppleCoord[1] == mGreenAppleCoord[1]){
-      mGreenAppleCoord[0] += 2;
-      mGreenAppleCoord[1] += 2;
+      mGreenAppleCoord[0] -= 2;
+      mGreenAppleCoord[1] -= 2;
     }
   }
-*/
+
   private void setAppleCoord() {
     mAppleCoord[0] = (int) ((mXMax - 1) * Math.random() + 1) * mSpriteDim;
     mAppleCoord[1] = (int) ((mYMax - 1) * Math.random() + 1) * mSpriteDim;
