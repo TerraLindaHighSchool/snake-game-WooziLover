@@ -57,6 +57,10 @@ public class SnakeGame {
     return mAppleCoord;
   }
 
+  protected  int[] getGreenAppleCoord(){
+    return mGreenAppleCoord;
+  }
+
   protected boolean getGameOver() {
     return mGameOver;
   }
