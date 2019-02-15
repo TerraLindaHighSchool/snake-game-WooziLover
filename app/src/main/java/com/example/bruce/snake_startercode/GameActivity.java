@@ -129,10 +129,10 @@ public class GameActivity extends AppCompatActivity {
         mImageView.setImageBitmap(ourBitmap);
 
         //Draw Green Apple
-       /* rectangle = new Rect(appleLeft, appleTop, appleLeft + mGame.getSpriteDim(),
+        rectangle = new Rect(appleLeft, appleTop, appleLeft + mGame.getSpriteDim(),
                 appleTop + mGame.getSpriteDim());
         window.drawBitmap(mGreenAppleBitmap, null, rectangle, null);
-        mImageView.setImageBitmap(ourBitmap);*/
+        mImageView.setImageBitmap(ourBitmap);
     }
 
     public Bitmap rotateBitmap(Bitmap original, float degrees) {
